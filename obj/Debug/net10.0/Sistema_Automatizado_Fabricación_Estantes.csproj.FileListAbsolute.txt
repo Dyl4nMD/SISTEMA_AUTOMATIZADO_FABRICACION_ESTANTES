@@ -12,3 +12,4 @@ C:\Users\Dylan\Desktop\Sistema_Automatizado_Fabricación_Estantes\obj\Debug\net1
 C:\Users\Dylan\Desktop\Sistema_Automatizado_Fabricación_Estantes\obj\Debug\net10.0\Sistema_Automatizado_Fabricación_Estantes.pdb
 C:\Users\Dylan\Desktop\Sistema_Automatizado_Fabricación_Estantes\obj\Debug\net10.0\Sistema_Automatizado_Fabricación_Estantes.genruntimeconfig.cache
 C:\Users\Dylan\Desktop\Sistema_Automatizado_Fabricación_Estantes\obj\Debug\net10.0\ref\Sistema_Automatizado_Fabricación_Estantes.dll
+C:\Users\Dylan\Desktop\Sistema_Automatizado_Fabricación_Estantes\obj\Debug\net10.0\Sistema_Automatizado_Fabricación_Estantes.sourcelink.json
