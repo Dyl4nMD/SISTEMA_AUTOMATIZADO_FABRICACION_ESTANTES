@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 
 class Program
 {
+    static string archivoCsv = "fabricacion.csv";
+
     static void Main()
     {
         int opcion;
@@ -9,9 +13,11 @@ class Program
         int cantidadEstantes = 0;
         int totalPlanchas = 0;
 
+        List<string[]> historial = new List<string[]>();
+
         do
         {
-            Console.WriteLine("========== MENU ==========");
+            Console.WriteLine("\n========== MENU ==========");
             Console.WriteLine("1. Registrar stock");
             Console.WriteLine("2. Calcular materiales");
             Console.WriteLine("3. Calcular planchas requeridas");
@@ -19,20 +25,23 @@ class Program
             Console.WriteLine("5. Calcular maximo de estantes");
             Console.WriteLine("6. Actualizar stock");
             Console.WriteLine("7. Generar reporte");
-            Console.WriteLine("8. Salir");
+            Console.WriteLine("8. Exportar CSV");
+            Console.WriteLine("9. Importar CSV");
+            Console.WriteLine("10. Mostrar historial");
+            Console.WriteLine("11. Salir");
 
             opcion = int.Parse(Console.ReadLine());
 
             switch (opcion)
             {
                 case 1:
-                    Console.WriteLine("Ingrese stock de planchas:");
+                    Console.Write("Ingrese stock de planchas: ");
                     stockPlanchas = RegistrarStock();
                     Console.WriteLine("Stock registrado correctamente");
                     break;
 
                 case 2:
-                    Console.WriteLine("Ingrese cantidad de estantes:");
+                    Console.Write("Ingrese cantidad de estantes: ");
                     cantidadEstantes = int.Parse(Console.ReadLine());
 
                     int paneles = CalcularPaneles(cantidadEstantes);
@@ -53,6 +62,15 @@ class Program
                     Console.WriteLine("Planchas para paneles: " + planchasPaneles);
                     Console.WriteLine("Planchas para angulos: " + planchasAngulos);
                     Console.WriteLine("Total de planchas requeridas: " + totalPlanchas);
+
+                    historial.Add(new string[]
+                    {
+                        totalPlanchas.ToString(),
+                        CalcularAngulos(cantidadEstantes).ToString(),
+                        CalcularPaneles(cantidadEstantes).ToString(),
+                        cantidadEstantes.ToString()
+                    });
+
                     break;
 
                 case 4:
@@ -69,21 +87,42 @@ class Program
                 case 5:
                     int maximoEstantes = CalcularMaximoEstantes(stockPlanchas);
 
-                    Console.WriteLine("Cantidad maxima de estantes: " + maximoEstantes);
+                    Console.WriteLine("Cantidad maxima de estantes: "
+                                      + maximoEstantes);
                     break;
 
                 case 6:
-                    stockPlanchas = ActualizarStock(stockPlanchas, totalPlanchas);
+                    stockPlanchas = ActualizarStock(
+                        stockPlanchas,
+                        totalPlanchas);
 
-                    Console.WriteLine("Stock actualizado: " + stockPlanchas);
+                    Console.WriteLine("Stock actualizado: "
+                                      + stockPlanchas);
                     break;
 
                 case 7:
-                    GenerarReporte(stockPlanchas, cantidadEstantes, totalPlanchas);
+                    GenerarReporte(
+                        stockPlanchas,
+                        cantidadEstantes,
+                        totalPlanchas);
                     break;
 
                 case 8:
-                    Console.WriteLine("Saliendo del sistema");
+                    GuardarCsv(historial);
+                    Console.WriteLine("Datos exportados correctamente");
+                    break;
+
+                case 9:
+                    historial = LeerCsv();
+                    Console.WriteLine("Datos importados correctamente");
+                    break;
+
+                case 10:
+                    Mostrar(historial);
+                    break;
+
+                case 11:
+                    Console.WriteLine("Saliendo...");
                     break;
 
                 default:
@@ -91,7 +130,7 @@ class Program
                     break;
             }
 
-        } while (opcion != 8);
+        } while (opcion != 11);
     }
 
     static int RegistrarStock()
@@ -139,11 +178,62 @@ class Program
         return stock - usadas;
     }
 
-    static void GenerarReporte(int stock, int estantes, int planchas)
+    static void GenerarReporte(
+        int stock,
+        int estantes,
+        int planchas)
     {
         Console.WriteLine("===== REPORTE FINAL =====");
         Console.WriteLine("Stock actual: " + stock);
         Console.WriteLine("Estantes solicitados: " + estantes);
         Console.WriteLine("Planchas requeridas: " + planchas);
+    }
+
+    static void GuardarCsv(List<string[]> lista)
+    {
+        List<string> lineas = new List<string>();
+
+        lineas.Add("Planchas,Angulos,Paneles,Estantes");
+
+        foreach (string[] fila in lista)
+        {
+            lineas.Add(
+                $"{fila[0]},{fila[1]},{fila[2]},{fila[3]}"
+            );
+        }
+
+        File.WriteAllLines(archivoCsv, lineas);
+    }
+
+    static List<string[]> LeerCsv()
+    {
+        List<string[]> lista = new List<string[]>();
+
+        if (!File.Exists(archivoCsv))
+            return lista;
+
+        string[] lineas = File.ReadAllLines(archivoCsv);
+
+        for (int i = 1; i < lineas.Length; i++)
+        {
+            lista.Add(lineas[i].Split(','));
+        }
+
+        return lista;
+    }
+
+    static void Mostrar(List<string[]> lista)
+    {
+        Console.WriteLine("\n===== HISTORIAL =====");
+
+        foreach (string[] fila in lista)
+        {
+            Console.WriteLine(
+                $"Planchas: {fila[0]} | " +
+                $"Angulos: {fila[1]} | " +
+                $"Paneles: {fila[2]} | " +
+                $"Estantes: {fila[3]}"
+            );
+        }
     }
 }
