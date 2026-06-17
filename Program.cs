@@ -18,7 +18,7 @@ namespace Sistema_Automatizado
             int planchasPaneles = 0;
             int planchasAngulos = 0;
             int totalPlanchas = 0;
-            double maximoEstantes = 0;
+            int maximoEstantes = 0;
  
             do
             {
@@ -86,8 +86,13 @@ namespace Sistema_Automatizado
                         break;
  
                     case 5:
-                        maximoEstantes = stockPlanchas / 1.2;
- 
+                        //debido a que se necesita hacer una division con decimales, maximoEstantes deberia ser un dato
+                        //de tipo double pero esto trae complicaciones al momento de redondear ya que al hacer la division 
+                        //nos resulta un numero decimal y si usamos "maximoEstantes--;" se le restará un numero en lugar de
+                        //redondear el resultado, por ello se optó por transformar la operacion:
+                        //dividir entre 1.2 es lo mismo que dividir entre 12/10 ----> 6/5 y aplicando division de fracciones seria:
+                        //stockPlanchas / 6/5 ------> (stockPlanchas * 5) / 6 dándonos un número entero como resultado
+                        maximoEstantes = (stockPlanchas * 5) / 6;
                         Console.WriteLine($"Cantidad maxima de estantes: {maximoEstantes}");
                         break;
  
