@@ -28,7 +28,8 @@ class Program
             Console.WriteLine("8. Exportar CSV");
             Console.WriteLine("9. Importar CSV");
             Console.WriteLine("10. Mostrar historial");
-            Console.WriteLine("11. Salir");
+            Console.WriteLine("11. Estadisticas de fabricacion");
+            Console.WriteLine("12. Salir");
 
             opcion = int.Parse(Console.ReadLine());
 
@@ -122,6 +123,10 @@ class Program
                     break;
 
                 case 11:
+                    MostrarEstadisticas(historial);
+                    break;
+
+                case 12:
                     Console.WriteLine("Saliendo...");
                     break;
 
@@ -130,7 +135,7 @@ class Program
                     break;
             }
 
-        } while (opcion != 11);
+        } while (opcion != 12);
     }
 
     static int RegistrarStock()
@@ -235,5 +240,39 @@ class Program
                 $"Estantes: {fila[3]}"
             );
         }
+    }
+    static void MostrarEstadisticas(List<string[]> lista)
+    {
+        if (lista.Count == 0)
+        {
+            Console.WriteLine("No hay fabricaciones registradas.");
+            return;
+        }
+
+        int totalEstantes = 0;
+        int mayor = int.MinValue;
+        int menor = int.MaxValue;
+
+        foreach (string[] fila in lista)
+        {
+            int estantes = int.Parse(fila[3]);
+
+            totalEstantes += estantes;
+
+            if (estantes > mayor)
+            mayor = estantes;
+
+            if (estantes < menor)
+            menor = estantes;
+        }
+
+        double promedio = (double)totalEstantes / lista.Count;
+
+        Console.WriteLine("\n===== ESTADISTICAS DE FABRICACION =====");
+        Console.WriteLine("Fabricaciones registradas: " + lista.Count);
+        Console.WriteLine("Total de estantes producidos: " + totalEstantes);
+        Console.WriteLine("Promedio de estantes por fabricacion: " + promedio);
+        Console.WriteLine("Mayor fabricacion: " + mayor + " estantes");
+        Console.WriteLine("Menor fabricacion: " + menor + " estantes");
     }
 }
