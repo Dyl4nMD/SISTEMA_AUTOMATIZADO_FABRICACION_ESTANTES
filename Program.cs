@@ -31,7 +31,11 @@ class Program
             Console.WriteLine("11. Estadisticas de fabricacion");
             Console.WriteLine("12. Salir");
 
+<<<<<<< HEAD
             opcion = int.Parse(Console.ReadLine()!);
+=======
+            opcion = int.Parse(Console.ReadLine());
+>>>>>>> 0294a55c235ac1744c05b856ff27c10a935fc200
 
             switch (opcion)
             {
@@ -43,7 +47,11 @@ class Program
 
                 case 2:
                     Console.Write("Ingrese cantidad de estantes: ");
+<<<<<<< HEAD
                     cantidadEstantes = int.Parse(Console.ReadLine()!);
+=======
+                    cantidadEstantes = int.Parse(Console.ReadLine());
+>>>>>>> 0294a55c235ac1744c05b856ff27c10a935fc200
 
                     int paneles = CalcularPaneles(cantidadEstantes);
                     int angulos = CalcularAngulos(cantidadEstantes);
@@ -56,7 +64,13 @@ class Program
                     int planchasPaneles = CalcularPlanchasPaneles(cantidadEstantes);
                     int planchasAngulos = CalcularPlanchasAngulos(cantidadEstantes);
 
+<<<<<<< HEAD
                     totalPlanchas = CalcularTotalPlanchas(planchasPaneles, planchasAngulos);
+=======
+                    totalPlanchas = CalcularTotalPlanchas(
+                        planchasPaneles,
+                        planchasAngulos);
+>>>>>>> 0294a55c235ac1744c05b856ff27c10a935fc200
 
                     Console.WriteLine("Planchas para paneles: " + planchasPaneles);
                     Console.WriteLine("Planchas para angulos: " + planchasAngulos);
@@ -74,13 +88,24 @@ class Program
 
                 case 4:
                     if (VerificarFabricacion(stockPlanchas, totalPlanchas))
+<<<<<<< HEAD
                         Console.WriteLine("La fabricacion SI es posible");
                     else
                         Console.WriteLine("Stock insuficiente");
+=======
+                    {
+                        Console.WriteLine("La fabricacion SI es posible");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Stock insuficiente");
+                    }
+>>>>>>> 0294a55c235ac1744c05b856ff27c10a935fc200
                     break;
 
                 case 5:
                     int maximoEstantes = CalcularMaximoEstantes(stockPlanchas);
+<<<<<<< HEAD
                     Console.WriteLine("Cantidad maxima de estantes: " + maximoEstantes);
                     break;
 
@@ -93,6 +118,27 @@ class Program
 
                 case 7:
                     GenerarReporte(stockPlanchas, cantidadEstantes, totalPlanchas);
+=======
+
+                    Console.WriteLine("Cantidad maxima de estantes: "
+                                      + maximoEstantes);
+                    break;
+
+                case 6:
+                    stockPlanchas = ActualizarStock(
+                        stockPlanchas,
+                        totalPlanchas);
+
+                    Console.WriteLine("Stock actualizado: "
+                                      + stockPlanchas);
+                    break;
+
+                case 7:
+                    GenerarReporte(
+                        stockPlanchas,
+                        cantidadEstantes,
+                        totalPlanchas);
+>>>>>>> 0294a55c235ac1744c05b856ff27c10a935fc200
                     break;
 
                 case 8:
@@ -127,7 +173,11 @@ class Program
 
     static int RegistrarStock()
     {
+<<<<<<< HEAD
         return int.Parse(Console.ReadLine()!);
+=======
+        return int.Parse(Console.ReadLine());
+>>>>>>> 0294a55c235ac1744c05b856ff27c10a935fc200
     }
 
     static int CalcularPaneles(int estantes)
@@ -170,6 +220,7 @@ class Program
         return stock - usadas;
     }
 
+<<<<<<< HEAD
     // NUEVA FUNCION AGREGADA
     static string EvaluarEstadoStock(int stock)
     {
@@ -183,6 +234,12 @@ class Program
     }
 
     static void GenerarReporte(int stock, int estantes, int planchas)
+=======
+    static void GenerarReporte(
+        int stock,
+        int estantes,
+        int planchas)
+>>>>>>> 0294a55c235ac1744c05b856ff27c10a935fc200
     {
         Console.WriteLine("===== REPORTE FINAL =====");
         Console.WriteLine("Stock actual: " + stock);
@@ -193,11 +250,21 @@ class Program
     static void GuardarCsv(List<string[]> lista)
     {
         List<string> lineas = new List<string>();
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0294a55c235ac1744c05b856ff27c10a935fc200
         lineas.Add("Planchas,Angulos,Paneles,Estantes");
 
         foreach (string[] fila in lista)
         {
+<<<<<<< HEAD
             lineas.Add($"{fila[0]},{fila[1]},{fila[2]},{fila[3]}");
+=======
+            lineas.Add(
+                $"{fila[0]},{fila[1]},{fila[2]},{fila[3]}"
+            );
+>>>>>>> 0294a55c235ac1744c05b856ff27c10a935fc200
         }
 
         File.WriteAllLines(archivoCsv, lineas);
@@ -234,7 +301,10 @@ class Program
             );
         }
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0294a55c235ac1744c05b856ff27c10a935fc200
     static void MostrarEstadisticas(List<string[]> lista)
     {
         if (lista.Count == 0)
@@ -254,10 +324,17 @@ class Program
             totalEstantes += estantes;
 
             if (estantes > mayor)
+<<<<<<< HEAD
                 mayor = estantes;
 
             if (estantes < menor)
                 menor = estantes;
+=======
+            mayor = estantes;
+
+            if (estantes < menor)
+            menor = estantes;
+>>>>>>> 0294a55c235ac1744c05b856ff27c10a935fc200
         }
 
         double promedio = (double)totalEstantes / lista.Count;
@@ -269,4 +346,8 @@ class Program
         Console.WriteLine("Mayor fabricacion: " + mayor + " estantes");
         Console.WriteLine("Menor fabricacion: " + menor + " estantes");
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 0294a55c235ac1744c05b856ff27c10a935fc200

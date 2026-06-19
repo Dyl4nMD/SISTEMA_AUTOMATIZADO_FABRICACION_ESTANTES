@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "JodOmACole8=",
   "success": true,
   "projectFilePath": "C:\\Users\\LENOVO\\Desktop\\Sistema_Automatizado_Fabricación_Estantes\\SISTEMA_ESTANTES_NUEVO\\SISTEMA_ESTANTES_NUEVO.csproj",
+=======
+  "dgSpecHash": "yh+N4r56eqI=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\xjere\\OneDrive\\Documentos\\SISTEMA_AUTOMATIZADO_FABRICACION_ESTANTES\\Sistema_Automatizado_Fabricación_Estantes.csproj",
+>>>>>>> 0294a55c235ac1744c05b856ff27c10a935fc200
   "expectedPackageFiles": [],
   "logs": []
 }
