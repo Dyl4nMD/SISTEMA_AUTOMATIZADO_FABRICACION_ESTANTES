@@ -64,8 +64,7 @@ namespace Sistema_Automatizado
                         break;
 
                     case 3:
-                        (totalPlanchas, planchasPaneles, planchasAngulos)
-                            = calcularPlanchas(paneles, angulos);
+                        (totalPlanchas, planchasPaneles, planchasAngulos) = calcularPlanchas(paneles, angulos);
 
                         Console.WriteLine($"Planchas para paneles: {planchasPaneles}");
                         Console.WriteLine($"Planchas para angulos: {planchasAngulos}");
