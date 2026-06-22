@@ -94,6 +94,7 @@ namespace Sistema_Automatizado
                     case 6:
                         stockPlanchas = actualizarStock(stockPlanchas, totalPlanchas);
                         Console.WriteLine($"Stock actualizado: {stockPlanchas}");
+                        Console.WriteLine("Estado del stock: " + EvaluarEstadoStock(stockPlanchas));
                         break;
 
                     case 7:
@@ -193,6 +194,18 @@ namespace Sistema_Automatizado
         public static int actualizarStock(int stockPlanchas, int totalPlanchas)
         {
             return stockPlanchas - totalPlanchas;
+        }
+
+        // AGREGADO DE FUNCION EVALUAR ESTADO STOCK
+        static string EvaluarEstadoStock(int stock)
+        {
+            if (stock < 10)
+                return "Stock bajo";
+
+            if (stock <= 30)
+                return "Stock suficiente";
+
+            return "Stock alto";
         }
 
         //funcion de opcion 7:
