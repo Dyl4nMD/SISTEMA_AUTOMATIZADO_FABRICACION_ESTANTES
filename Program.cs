@@ -42,9 +42,9 @@ namespace Sistema_Automatizado
                 Console.WriteLine("10. Mostrar historial");
                 Console.WriteLine("11. Estadisticas de fabricacion");
                 Console.WriteLine("12. Salir");
-                Console.WriteLine("Ingrese una opcion: ");
-
-                opcion = int.Parse(Console.ReadLine());
+                
+                //Validación del menú principal (rango 1 a 12)
+                opcion = LeerEntero("Ingrese una opcion: ", 1, 12);
 
                 // Usamos condicionales para poder darle a cada opcion un diferente proceso
                 switch (opcion)
@@ -54,8 +54,8 @@ namespace Sistema_Automatizado
                         break;
 
                     case 2:
-                        Console.Write("Ingrese cantidad de estantes: ");
-                        cantidadEstantes = int.Parse(Console.ReadLine());
+                        //Validación de rango (mínimo 0 estantes)
+                        cantidadEstantes = LeerEntero("Ingrese cantidad de estantes: ", 0, int.MaxValue);
 
                         (paneles, angulos) = calcularMateriales(cantidadEstantes);
 
@@ -78,7 +78,7 @@ namespace Sistema_Automatizado
                             paneles.ToString(),
                             cantidadEstantes.ToString()
                         });
-
+                        Console.WriteLine("Registro agregado al historial local.");
                         break;
 
                     case 4:
@@ -107,7 +107,7 @@ namespace Sistema_Automatizado
 
                     case 9:
                         historial = LeerCsv();
-                        Console.WriteLine("Datos importados correctamente");
+                        Console.WriteLine($"Datos importados correctamente. {historial.Count} registros cargados.");
                         break;
 
                     case 10:
@@ -121,27 +121,62 @@ namespace Sistema_Automatizado
                     case 12:
                         Console.WriteLine("Saliendo del sistema");
                         break;
-                    
+
                     default:
                         Console.WriteLine("Opcion invalida");
-                        break;
+                    break;
                 }
 
             } while (opcion != 12);
         }
 
+        //FUNCIÓN DE VALIDACIÓN DE ENTRADAS (Tipo, rango y no vacío)
+        public static int LeerEntero(string mensaje, int min, int max)
+        {
+            int resultado;
+            while (true)
+            {
+                Console.Write(mensaje);
+                string entrada = Console.ReadLine();
+
+                // Validación: No vacío o espacios en blanco
+                if (string.IsNullOrWhiteSpace(entrada))
+                {
+                    Console.WriteLine("Error: La entrada no puede estar vacía. Intente de nuevo.");
+                    continue;
+                }
+
+                // Validación: Tipo de dato (Debe ser un número entero válido)
+                if (!int.TryParse(entrada, out resultado))
+                {
+                    Console.WriteLine("Error: Debe ingresar un número entero válido. Intente de nuevo.");
+                    continue;
+                }
+
+                // Validación: Rango numérico permitido
+                if (resultado < min || resultado > max)
+                {
+                    Console.WriteLine($"Error: El valor debe estar en el rango de {min} a {max}. Intente de nuevo.");
+                    continue;
+                }
+
+                // Si supera todas las validaciones, rompe el ciclo y devuelve el valor
+                break;
+            }
+            return resultado;
+        }
+
         //CREACION DE FUNCIONES
-        //funcion de opcion 1:
+        //funcion opcion 1: 
         public static int registrarStock()
         {
-            Console.Write("Ingrese stock de planchas: ");
-            int stock = int.Parse(Console.ReadLine());
-
-            Console.WriteLine("Stock ingresado correctamente: ");
+            //Validación de entrada para el stock (mínimo 0)
+            int stock = LeerEntero("Ingrese stock de planchas: ", 0, int.MaxValue);
+            Console.WriteLine("Stock ingresado correctamente.");
             return stock;
         }
 
-        //funcion de opcion 2:
+        //funcion opcion 2:
         public static (int paneles, int angulos) calcularMateriales(int estantes)
         {
             return (estantes * 5, estantes * 4);
@@ -200,7 +235,6 @@ namespace Sistema_Automatizado
         {
             if (stock < 10)
                 return "Stock bajo";
-
             if (stock <= 30)
                 return "Stock suficiente";
 
@@ -219,41 +253,57 @@ namespace Sistema_Automatizado
         //funcion de opcion 8:
         static void GuardarCsv(List<string[]> lista)
         {
-            //creamos una lista de lineas que representará el contenido del archivo CSV
-            List<string> lineas = new List<string>();
-
-            //agregamos la cabecera del archivo CSV
-            lineas.Add("Planchas,Angulos,Paneles,Estantes");
-
-            //recorremos cada fila del historial y la convertimos a formato CSV
-            foreach (string[] fila in lista)
+            try
             {
-                lineas.Add($"{fila[0]},{fila[1]},{fila[2]},{fila[3]}");
-            }
+                //creamos una lista de lineas que representará el contenido del archivo CSV
+                List<string> lineas = new List<string>();
+                //agregamos la cabecera del archivo CSV
+                lineas.Add("Planchas,Angulos,Paneles,Estantes");
 
-            //guardamos todas las lineas en el archivo definido en la variable archivoCsv
-            File.WriteAllLines(archivoCsv, lineas);
+                //recorremos cada fila del historial y la convertimos a formato CSV
+                foreach (string[] fila in lista)
+                {
+                    lineas.Add($"{fila[0]},{fila[1]},{fila[2]},{fila[3]}");
+                }
+                //guardamos todas las lineas en el archivo definido en la variable archivoCsv
+                File.WriteAllLines(archivoCsv, lineas);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al exportar el archivo CSV: " + ex.Message);
+            }
         }
 
         //funcion de opcion 9:
         static List<string[]> LeerCsv()
         {
             List<string[]> lista = new List<string[]>();
-
             //verificamos si el archivo CSV existe antes de intentar leerlo
             if (!File.Exists(archivoCsv))
-                return lista;
-
-            //leemos todas las lineas del archivo CSV
-            string[] lineas = File.ReadAllLines(archivoCsv);
-
-            //recorremos las lineas ignorando la primera (cabecera)
-            for (int i = 1; i < lineas.Length; i++)
             {
-                //dividimos cada linea por comas y la agregamos a la lista
-                lista.Add(lineas[i].Split(','));
+                Console.WriteLine("El archivo CSV no existe.");
+                return lista;
             }
-            //retornamos la lista con los datos importados
+
+            try
+            {
+                //leemos todas las lineas del archivo CSV
+                string[] lineas = File.ReadAllLines(archivoCsv);
+                //recorremos las lineas ignorando la primera (cabecera)
+                for (int i = 1; i < lineas.Length; i++)
+                {
+                    if (!string.IsNullOrWhiteSpace(lineas[i]))
+                    {
+                        //dividimos cada linea por comas y la agregamos a la lista
+                        lista.Add(lineas[i].Split(','));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al leer el archivo CSV: " + ex.Message);
+            }
+
             return lista;
         }
 
@@ -261,7 +311,11 @@ namespace Sistema_Automatizado
         static void Mostrar(List<string[]> lista)
         {
             Console.WriteLine("\n===== HISTORIAL =====");
-
+            if (lista.Count == 0)
+            {
+                Console.WriteLine("No hay registros en el historial.");
+                return;
+            }
             //recorremos cada registro del historial
             foreach (string[] fila in lista)
             {
@@ -288,21 +342,15 @@ namespace Sistema_Automatizado
             int totalEstantes = 0;
             int mayor = int.MinValue;
             int menor = int.MaxValue;
-
             //recorremos cada registro del historial
             foreach (string[] fila in lista)
             {
                 int estantes = int.Parse(fila[3]);
-
                 totalEstantes += estantes;
 
-                if (estantes > mayor)
-                    mayor = estantes;
-
-                if (estantes < menor)
-                    menor = estantes;
+                if (estantes > mayor) mayor = estantes;
+                if (estantes < menor) menor = estantes;
             }
-
             //calculamos el promedio de estantes por fabricacion
             double promedio = (double)totalEstantes / lista.Count;
 
