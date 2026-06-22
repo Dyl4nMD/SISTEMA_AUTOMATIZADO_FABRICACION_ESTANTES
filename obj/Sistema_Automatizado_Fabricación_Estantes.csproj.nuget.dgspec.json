@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\xjere\\OneDrive\\Documentos\\SISTEMA_AUTOMATIZADO_FABRICACION_ESTANTES\\Sistema_Automatizado_Fabricación_Estantes.csproj": {}
+    "C:\\ProyectosVScode\\Sistema_Automatizado_Fabricación_Estantes\\Sistema_Automatizado_Fabricación_Estantes.csproj": {}
   },
   "projects": {
-    "C:\\Users\\xjere\\OneDrive\\Documentos\\SISTEMA_AUTOMATIZADO_FABRICACION_ESTANTES\\Sistema_Automatizado_Fabricación_Estantes.csproj": {
+    "C:\\ProyectosVScode\\Sistema_Automatizado_Fabricación_Estantes\\Sistema_Automatizado_Fabricación_Estantes.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\xjere\\OneDrive\\Documentos\\SISTEMA_AUTOMATIZADO_FABRICACION_ESTANTES\\Sistema_Automatizado_Fabricación_Estantes.csproj",
+        "projectUniqueName": "C:\\ProyectosVScode\\Sistema_Automatizado_Fabricación_Estantes\\Sistema_Automatizado_Fabricación_Estantes.csproj",
         "projectName": "Sistema_Automatizado_Fabricación_Estantes",
-        "projectPath": "C:\\Users\\xjere\\OneDrive\\Documentos\\SISTEMA_AUTOMATIZADO_FABRICACION_ESTANTES\\Sistema_Automatizado_Fabricación_Estantes.csproj",
-        "packagesPath": "C:\\Users\\xjere\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\xjere\\OneDrive\\Documentos\\SISTEMA_AUTOMATIZADO_FABRICACION_ESTANTES\\obj\\",
+        "projectPath": "C:\\ProyectosVScode\\Sistema_Automatizado_Fabricación_Estantes\\Sistema_Automatizado_Fabricación_Estantes.csproj",
+        "packagesPath": "C:\\Users\\Dylan\\.nuget\\packages\\",
+        "outputPath": "C:\\ProyectosVScode\\Sistema_Automatizado_Fabricación_Estantes\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\xjere\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Dylan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
