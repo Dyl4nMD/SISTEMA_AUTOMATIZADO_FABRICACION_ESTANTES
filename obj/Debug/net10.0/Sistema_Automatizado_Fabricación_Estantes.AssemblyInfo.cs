@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Sistema_Automatizado_Fabricación_Estantes")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+128dc6f9f0caa0e318c4b82aa8bc6c02e68aa947")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f14bdeb72f90078a7dfa5b63f0514e4cfa15c1f4")]
 [assembly: System.Reflection.AssemblyProductAttribute("Sistema_Automatizado_Fabricación_Estantes")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Sistema_Automatizado_Fabricación_Estantes")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

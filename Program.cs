@@ -40,7 +40,8 @@ namespace Sistema_Automatizado
                 Console.WriteLine("8. Exportar CSV");
                 Console.WriteLine("9. Importar CSV");
                 Console.WriteLine("10. Mostrar historial");
-                Console.WriteLine("11. Salir");
+                Console.WriteLine("11. Estadisticas de fabricacion");
+                Console.WriteLine("12. Salir");
                 Console.WriteLine("Ingrese una opcion: ");
 
                 opcion = int.Parse(Console.ReadLine());
@@ -114,15 +115,19 @@ namespace Sistema_Automatizado
                         break;
 
                     case 11:
-                        Console.WriteLine("Saliendo del sistema");
+                        MostrarEstadisticas(historial);
                         break;
 
+                    case 12:
+                        Console.WriteLine("Saliendo del sistema");
+                        break;
+                    
                     default:
                         Console.WriteLine("Opcion invalida");
                         break;
                 }
 
-            } while (opcion != 11);
+            } while (opcion != 12);
         }
 
         //CREACION DE FUNCIONES
@@ -256,6 +261,45 @@ namespace Sistema_Automatizado
                     $"Estantes: {fila[3]}"
                 );
             }
+        }
+
+        //funcion de opcion 11:
+        static void MostrarEstadisticas(List<string[]> lista)
+        {
+            //Si no hay registros en el historial, no se puede calcular estadisticas
+            if (lista.Count == 0)
+            {
+                Console.WriteLine("No hay fabricaciones registradas.");
+                return;
+            }
+
+            int totalEstantes = 0;
+            int mayor = int.MinValue;
+            int menor = int.MaxValue;
+
+            //recorremos cada registro del historial
+            foreach (string[] fila in lista)
+            {
+                int estantes = int.Parse(fila[3]);
+
+                totalEstantes += estantes;
+
+                if (estantes > mayor)
+                    mayor = estantes;
+
+                if (estantes < menor)
+                    menor = estantes;
+            }
+
+            //calculamos el promedio de estantes por fabricacion
+            double promedio = (double)totalEstantes / lista.Count;
+
+            Console.WriteLine("\n===== ESTADISTICAS DE FABRICACION =====");
+            Console.WriteLine("Fabricaciones registradas: " + lista.Count);
+            Console.WriteLine("Total de estantes producidos: " + totalEstantes);
+            Console.WriteLine("Promedio de estantes por fabricacion: " + promedio);
+            Console.WriteLine("Mayor fabricacion: " + mayor + " estantes");
+            Console.WriteLine("Menor fabricacion: " + menor + " estantes");
         }
     }
 }

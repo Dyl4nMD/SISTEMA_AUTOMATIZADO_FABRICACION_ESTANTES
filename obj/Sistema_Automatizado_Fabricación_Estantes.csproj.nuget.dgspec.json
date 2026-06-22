@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Dylan\\Desktop\\Sistema_Automatizado_Fabricación_Estantes\\Sistema_Automatizado_Fabricación_Estantes.csproj": {}
+    "C:\\ProyectosVScode\\Sistema_Automatizado_Fabricación_Estantes\\Sistema_Automatizado_Fabricación_Estantes.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Dylan\\Desktop\\Sistema_Automatizado_Fabricación_Estantes\\Sistema_Automatizado_Fabricación_Estantes.csproj": {
+    "C:\\ProyectosVScode\\Sistema_Automatizado_Fabricación_Estantes\\Sistema_Automatizado_Fabricación_Estantes.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dylan\\Desktop\\Sistema_Automatizado_Fabricación_Estantes\\Sistema_Automatizado_Fabricación_Estantes.csproj",
+        "projectUniqueName": "C:\\ProyectosVScode\\Sistema_Automatizado_Fabricación_Estantes\\Sistema_Automatizado_Fabricación_Estantes.csproj",
         "projectName": "Sistema_Automatizado_Fabricación_Estantes",
-        "projectPath": "C:\\Users\\Dylan\\Desktop\\Sistema_Automatizado_Fabricación_Estantes\\Sistema_Automatizado_Fabricación_Estantes.csproj",
+        "projectPath": "C:\\ProyectosVScode\\Sistema_Automatizado_Fabricación_Estantes\\Sistema_Automatizado_Fabricación_Estantes.csproj",
         "packagesPath": "C:\\Users\\Dylan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dylan\\Desktop\\Sistema_Automatizado_Fabricación_Estantes\\obj\\",
+        "outputPath": "C:\\ProyectosVScode\\Sistema_Automatizado_Fabricación_Estantes\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
